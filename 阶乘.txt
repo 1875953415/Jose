@@ -1,0 +1,33 @@
+½×³Ë
+package factorial;
+
+public class factirial {
+	
+	public static void main(String[] args) {
+		// 10!=
+		long result = 1l;
+		
+		for (int i = 1; i <= 10; i++) {
+			result *=i;
+		}
+		System.out.println("10!="+result);
+	
+		// 10! + 9! + 8! .. 1! =
+		result = 0;
+		for (int temp = 1, i = 0; i < 10; i++) {
+			//temp *= (i+1);
+			result += temp *= (i+1);
+		}
+		System.out.println("10!+9!+..+1! = "+result);
+	
+		// monkey eat peach 1 more than half a day,
+		// there is one peach remain the 8th day
+		// how many the first day?
+		result = 1;
+		for (int i = 8; i >= 1; i--) {
+			result =++result * 2;
+		}
+		System.out.println(result);
+	}
+
+}

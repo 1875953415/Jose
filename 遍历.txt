@@ -1,0 +1,26 @@
+±éÀú
+package com;
+
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Set;
+
+public class MapLearning {
+	public static void main(String[] args) {
+		HashMap<String, String> hm = new HashMap<String, String>();
+		
+		hm.put("leo", "nice");
+		hm.put("yanjunlu", "awesome");
+		hm.put("prince", "great");
+		
+		Set<String> s = hm.keySet();
+		
+		
+		Iterator<String> it = s.iterator();
+		while (it.hasNext()) {
+			String str = (String) it.next();
+			System.out.print(str + " ");
+			System.out.println(hm.get(str));
+		}
+	}
+}

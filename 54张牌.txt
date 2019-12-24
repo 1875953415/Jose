@@ -1,0 +1,25 @@
+54уееф
+package com;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+
+public class Set {
+	public static void main(String[] args) {
+		int randNum, i=0;
+		ArrayList<Integer> al = new ArrayList<Integer>();
+		while (i<54) {
+			randNum = (int) (Math.random()*54 + 1);
+			if(!al.contains(randNum)){
+				al.add(randNum);
+				i++;
+			}
+		}
+
+		Iterator<Integer> ia = al.iterator();
+		while (ia.hasNext()) {
+			Integer integer = (Integer) ia.next();
+			System.out.println(integer);
+		}
+	}
+}

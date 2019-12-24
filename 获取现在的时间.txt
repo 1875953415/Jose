@@ -1,0 +1,26 @@
+计时
+package format;
+
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+
+public class format {
+	public static void main(String[] args) {
+		
+		double n=Math.sqrt(2014);
+		
+		DecimalFormat fn=new DecimalFormat("#.##");
+		
+		String fnum=fn.format(n);
+		System.out.println(fnum);
+		
+		Date cur=new Date();
+		SimpleDateFormat fd=new SimpleDateFormat("yyyy年MM月dd日--hh:mm:ss--E");
+		String cd=fd.format(cur);
+		System.out.println(cd);
+		
+	}
+
+}

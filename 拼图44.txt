@@ -1,0 +1,67 @@
+4*4 ƴͼ
+package puzzle;
+
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+
+public class puzzle extends JFrame implements ActionListener{
+	
+	JButton b[]= new JButton[16];
+	
+	public puzzle(){
+	
+		setLayout(new GridLayout(4,4));
+		
+		for (int i = 0; i < b.length; i++) {
+
+			ImageIcon ic=new ImageIcon("c\\c_"+(i+1)+".gif");
+			b[i]=new JButton(ic);
+			b[i].addActionListener(this);
+			add(b[i]);
+		}
+		b[0].setIcon(null);
+		
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setSize(290, 280);
+		setVisible(true);
+	}
+
+
+	public void actionPerformed(ActionEvent e) {
+
+		for (int i = 0; i < 16; i++) {
+			if(e.getSource()==b[i]&& b[i-1].getIcon()==null && (i-1)%4!=3){
+				b[i-1].setIcon(b[i].getIcon());
+				b[i].setIcon(null);
+				continue;
+			}
+			if(e.getSource()==b[i]&& b[i+1].getIcon()==null && (i+1)%4!=0){
+				b[i+1].setIcon(b[i].getIcon());
+				b[i].setIcon(null);
+				continue;
+			}
+			if(e.getSource()==b[i]&& b[i+4].getIcon()==null && i<12){
+				b[i+4].setIcon(b[i].getIcon());
+				b[i].setIcon(null);
+				continue;
+			}
+			if(e.getSource()==b[i]&& b[i-4].getIcon()==null && i>3){
+				b[i-4].setIcon(b[i].getIcon());
+				b[i].setIcon(null);
+				continue;
+			}
+		}
+		
+		
+	}
+	
+	public static void main(String[] args) {
+		new puzzle();
+	}
+
+}

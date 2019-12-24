@@ -1,0 +1,27 @@
+package star;
+
+
+public class paixu {
+	public static void main(String[] args) {
+		int s[]={45,64,32,34,21,2,10,100};
+		ss(s);
+	}
+	static void ss(int s[]){
+		int tmp;
+		for (int i = 0; i < s.length; i++) {
+			for (int j = 0; j < s.length; j++) {
+				if (s[j]<s[j+1]) {
+					tmp=s[j];
+					s[j]=s[j+1];
+					s[j+1]=tmp;
+				}
+			}
+		}
+		for (int i = 0; i < s.length; i++) {
+			System.out.println(s[i]);
+		}
+		
+		
+	}
+
+}

@@ -1,0 +1,21 @@
+package star;
+
+public class febnaqi {
+	public static void main(String[] args) {
+		a(12);
+	}
+	static void a(int i){
+		int s[]=new int [i];
+		s[0]=1;
+		s[1]=1;
+		System.out.println(s[0]);
+		System.out.println(s[1]);
+		for (int j = 2; j < s.length; j++) {
+			s[j]=s[j-1]+s[j-2];
+			System.out.println(s[j]);
+		}
+		
+		
+	}
+	
+}

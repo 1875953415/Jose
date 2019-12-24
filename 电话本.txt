@@ -1,0 +1,103 @@
+电话本的存储和查找
+package com;
+
+import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Enumeration;
+import java.util.Properties;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+
+public class TelBook extends JFrame implements ActionListener{
+
+	JButton b1, b2;
+	JTextField t1, t2;
+	JLabel l1, l2;
+	
+	public TelBook(){
+		
+		setLayout(new FlowLayout());
+		b1 = new JButton("save");
+		b2 = new JButton("search");
+		t1 = new JTextField(11);
+		t2 = new JTextField(11);
+		l1 = new JLabel("name：");
+		l2 = new JLabel("tel：");
+		
+		add(l1);
+		add(t1);
+		add(l2);
+		add(t2);
+		add(b1);
+		add(b2);
+		b1.addActionListener(this);
+		b2.addActionListener(this);
+		
+		setLocation(200, 300);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setSize(200, 200);
+		setVisible(true);
+		
+	}
+	public static void main(String[] args) {
+		new TelBook();
+	}
+
+	public void actionPerformed(ActionEvent e) {
+		File f = new File("c:\\tel.properties");
+		Properties p = new Properties();
+		
+		if(e.getSource()==b1){
+			String n = t1.getText();
+			String t = t2.getText();
+			try {
+				p.load(new FileInputStream(f));
+				p.setProperty(n, t);
+				p.store(new FileOutputStream(f), "");
+				JOptionPane.showMessageDialog(this, "存储成功");
+			} catch (FileNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+		else if(e.getSource()==b2){
+			String n;
+			
+			n = t1.getText();
+			
+			try {
+				p.load(new FileInputStream(f));
+				Enumeration<?> em = p.propertyNames();
+			
+				while (em.hasMoreElements()) {
+					String key = (String) em.nextElement();
+					if(n.equals(key)){
+						String value = p.getProperty(key);
+						t2.setText(value);
+					}
+				}
+			} catch (FileNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
+		}
+		
+	}
+}

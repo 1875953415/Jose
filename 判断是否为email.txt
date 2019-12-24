@@ -1,0 +1,26 @@
+package star;
+
+public class email {
+	
+	public static void main(String[] args) {
+		String s="12345";
+		test(s);
+		
+	}
+	static void test(String s){
+		boolean t=true;
+		String a1="@";
+		String a2=".";
+		int b1=s.indexOf(a1);
+		int b2=s.indexOf(a2);
+		if (b1>0&&b2>0) {
+			System.out.println(t);
+		}
+		else {
+			t=false;
+			System.out.println(t);
+		}
+		
+	}
+
+}

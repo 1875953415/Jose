@@ -1,0 +1,24 @@
+package com;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+
+public class test {
+	public static void main(String[] args) {
+		ArrayList<Integer> a=new ArrayList<Integer>();
+		a.add(3);
+		a.add(2);
+		a.add(7);
+		if (a.contains(7)) {
+			System.out.println("yes");
+		}
+		else {
+			System.out.println("no");
+		}
+		Iterator<Integer> it=a.iterator();
+		while (it.hasNext()) {
+			Integer i = (Integer) it.next();
+			System.out.println(i);
+		}
+	}
+}

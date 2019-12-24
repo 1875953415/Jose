@@ -1,0 +1,76 @@
+登陆页面 用户名 密码
+package JFramePractice;
+
+import java.awt.FlowLayout;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+
+public class practice extends JFrame{
+	JLabel l1,l2;
+	JButton b1,b2;
+	JTextField t1,t2;
+	
+	public practice(){
+		l1=new JLabel("user");
+		l2=new JLabel("password");
+		
+		b1=new JButton("submit");
+		b2=new JButton("reset");
+		
+		t1=new JTextField("user name", 20);
+		t2=new JTextField("password", 20);
+		
+		setLayout(new FlowLayout());// 顺序显示添加内容,否则覆盖
+		add(l1);
+		add(t1);
+
+		add(l2);
+		add(t2);
+		
+		add(b1);
+		add(b2);
+		
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);// 关闭即结束,否则只是不可见
+		setSize(300, 300);	// 设置大小
+		setVisible(true);	// 设置可见
+	}
+	public static void ok(String[] args) {
+		new practice();
+	}
+
+}
+
+4*4按钮
+package JFramePractice;
+
+import java.awt.GridLayout;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+
+public class sixteen extends JFrame{
+	
+	JButton []J=new JButton[16];
+	
+	public sixteen(){
+		
+		setLayout(new GridLayout(4,4));
+		for (int i = 0; i < J.length; i++) {
+			J[i]=new JButton(""+(i+1));
+			add(J[i]);
+		}
+		
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setSize(300,300);
+		setVisible(true);
+		
+	}
+	
+	public static void main(String[] args) {
+		new sixteen();
+	}
+
+}

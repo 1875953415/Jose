@@ -1,0 +1,63 @@
+¼ÆËãÆ÷
+package calc;
+
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
+public class calc extends JFrame implements ActionListener{
+
+	JTextField t1,t2,t3;
+	JButton b1,b2;
+	
+	public calc(){
+		t1=new JTextField(20);
+		t2=new JTextField(20);
+		t3=new JTextField(20);
+		
+		b1=new JButton("+");
+		b2=new JButton("-");
+		
+		b1.addActionListener(this);
+		b2.addActionListener(this);
+		setLayout(new FlowLayout());
+		
+		add(t1);
+		add(t2);
+		add(t3);
+		
+		add(b1);
+		add(b2);
+		
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setSize(200, 200);
+		setVisible(true);
+		
+	}
+	public static void main(String[] args) {
+		new calc();
+	}
+
+
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource()==b1)
+		{
+			String f=t1.getText();
+			String l=t2.getText();
+			
+			double d1=Double.parseDouble(f);
+			double d2=Double.parseDouble(l);
+			
+			double d3=d1+d2;
+			String t=String.valueOf(d3);
+			
+			t3.setText(t);
+		}
+	}
+}

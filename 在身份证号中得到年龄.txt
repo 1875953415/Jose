@@ -1,0 +1,34 @@
+在身份证号中得到年龄
+package getAge;
+
+public class getAge {
+	public static void main(String[] args) {
+		
+		String ID="330304199402111213";
+		String ID1="330304940211121";
+		
+		int age=getAge(ID);
+		System.out.println(age+" years old");
+	}
+	
+	static int getAge(String ID){
+		int age, l;
+		String temp;
+		l=ID.length();
+		
+		if(l==15){
+			temp=ID.substring(6, 8);
+		}
+		else{
+			temp=ID.substring(6, 10);
+		}
+		
+		int year=Integer.parseInt(temp);
+		if (l==15) {
+			age=100-year+14;
+		} else {
+			age=2014-year;
+		}
+		
+		return age;
+	}

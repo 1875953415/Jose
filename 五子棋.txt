@@ -1,0 +1,364 @@
+五子棋
+package fiveChess;
+
+/*
+ * 1/棋盘(19*19)
+ * 2/棋子
+ *  1)单击轮流黑白棋
+ *  2)保存走过路径
+ *  3)判断棋盘内`交叉点上
+ *  4)判断是否走过
+ * 3/输赢
+ */
+import java.awt.Canvas;
+import java.awt.Color;
+import java.awt.FlowLayout;
+import java.awt.Graphics;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
+import javax.swing.JFrame;
+
+public class fiveChess extends JFrame{
+	chessPad pad;
+	public fiveChess(){
+		pad=new chessPad();
+		
+		setLayout(new FlowLayout());
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setLocation(200, 75);
+		add(pad);
+		setSize(500, 500);
+		setVisible(true);
+	}
+	
+	public static void main(String[] args) {
+		new fiveChess();
+	}
+}
+
+class chessPad extends Canvas implements MouseListener{
+	
+	int x[], y[], i=0;
+	
+	public chessPad(){
+		setSize(420,420);
+		setBackground(Color.white);
+		addMouseListener(this);
+		setVisible(true);
+	}
+
+	
+
+	public void paint(Graphics g) {
+		for (int i = 0; i < 20; i++) {
+			g.drawLine(20, 20+i*20, 400, 20+i*20);
+			g.drawLine(20+i*20, 20, 20+i*20,400);
+		}
+		
+		for (int j = 0; j <= i; j++){
+			g.fillOval(x[j]-7, y[j]-7, 14, 14);	
+		}
+		
+	}
+
+
+	public void mouseClicked(MouseEvent e) {
+		x=new int[400];
+		y=new int[400];
+		
+		x[i]=e.getX();
+		y[i]=e.getY();
+
+		repaint();
+	}
+
+
+	public void mouseEntered(MouseEvent e) {
+
+		
+	}
+
+
+	public void mouseExited(MouseEvent e) {
+
+		
+	}
+
+
+	public void mousePressed(MouseEvent e) {
+
+		
+	}
+
+
+	public void mouseReleased(MouseEvent e) {
+
+		
+	}
+}
+五子棋 升级版 限制落子的位置
+package FiveChess;
+
+import java.awt.Canvas;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Graphics;
+import java.awt.Toolkit;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
+public class FiveChess extends JFrame {
+
+	pad pad;
+	int x, y;
+	public FiveChess() {
+		pad = new pad();
+		setLayout(new FlowLayout());
+		Dimension di=Toolkit.getDefaultToolkit().getScreenSize();
+		x=(int)di.width;
+		y=(int)di.height;
+		add(pad);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setSize(x*2/3, y*3/4);
+		setLocation(x/6,y/8);
+		setVisible(true);
+	}
+
+	public static void main(String[] args) {
+		new FiveChess();
+	}
+
+}
+
+class pad extends Canvas implements MouseListener {
+	int x, y, a, b;
+	int[][] path = new int[15][15];
+	boolean judge = true;
+
+	public pad() {
+		setBackground(Color.white);
+		addMouseListener(this);
+		setSize(420, 420);
+		setVisible(true);
+	}
+
+	public void paint(Graphics g) {
+		for (int i = 0; i < 15; i++) {
+			g.drawLine(30, 30 * i + 30, 390, 30 * i + 30);
+			g.drawLine(30 * i + 30, 30, 30 * i + 30, 390);
+		}
+
+		for (int i = 0; i < 15; i++) {
+			for (int j = 0; j < 15; j++) {
+				if (path[i][j] == 1) {
+					g.setColor(Color.black);
+					g.fillOval(i * 30 + 21, j * 30 + 21, 18, 18);
+				}
+				if (path[i][j] == 2) {
+					g.setColor(Color.white);
+					g.fillOval(i * 30 + 21, j * 30 + 21, 18, 18);
+				}
+			}
+		}
+
+	}
+
+	public void mousePressed(MouseEvent e) {
+
+		x = e.getX();
+		y = e.getY();
+		a = (x-30)%30;
+		b = (y-30)%30;
+		
+		x=(x-30)/30;
+		y=(y-30)/30;
+		
+		if(a>15)
+		x++;
+		if(b>15)
+		y++;
+		
+		if (path[x][y] == 0) {
+			if (judge == true) {
+				path[x][y] = 1;
+				judge = false;
+			} else {
+				path[x][y] = 2;
+				judge = true;
+			}
+		}
+		else{
+			JOptionPane.showMessageDialog(this, "limit place");
+		}
+		repaint();
+
+	}
+
+	public void mouseClicked(MouseEvent e) {
+
+	}
+
+	public void mouseEntered(MouseEvent e) {
+
+	}
+
+	public void mouseExited(MouseEvent e) {
+
+	}
+
+	public void mouseReleased(MouseEvent e) {
+	}
+
+}
+五子棋
+package FiveChess;
+
+import java.awt.Canvas;
+import java.awt.Color;
+import java.awt.FlowLayout;
+import java.awt.Graphics;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
+public class FiveChess extends JFrame{
+	
+	pad pad;
+	
+	public FiveChess(){
+		pad=new pad();
+		setLayout(new FlowLayout());
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		add(pad);
+		
+		setSize(510,520);
+		setVisible(true);
+	}
+	public static void main(String[] args) {
+		new FiveChess();
+	}
+
+}
+class pad extends Canvas implements MouseListener{
+
+	int x,y,a,b;
+	int [][]path=new int[15][15];
+	boolean wob=false;	//false for black, true for white;
+	public pad(){
+		Color bgc=new Color(183,172,72); 
+		setBackground(bgc);
+		addMouseListener(this);
+		setSize(480,480);
+		setVisible(true);
+		
+	}
+
+	public void paint(Graphics g) {
+		boolean wol = false;
+		for (int i = 0; i < 15; i++) {
+			g.drawLine(30, 30 + i * 30, 450, 30 + i * 30);
+			g.drawLine(30 + i * 30, 30, 30 + i * 30, 450);
+		}
+		for (int i = 0; i < 15; i++) {
+			for (int j = 0; j < 15; j++) {
+				if (path[i][j] == 1) {
+					g.setColor(Color.black);
+					g.fillOval(i * 30 + 21, j * 30 + 21, 19, 19);
+				}
+				if (path[i][j] == 2) {
+					g.setColor(Color.black);
+					g.drawOval(i * 30 + 20, j * 30 + 20, 20, 20);
+					g.setColor(Color.white);
+					g.fillOval(i * 30 + 21, j * 30 + 21, 19, 19);
+				}
+			}
+		}
+	}
+
+	public void mousePressed(MouseEvent e) {
+		x = e.getX();
+		y = e.getY();
+
+		a = x % 30;
+		b = y % 30;
+
+		x = (x - 30) / 30;
+		y = (y - 30) / 30;
+
+		if (a > 15) {
+			x += 1;
+		}
+		if (b > 15) {
+			y += 1;
+		}
+		if (path[x][y] == 0) {
+			if (!wob) {
+				path[x][y] = 1;
+				wob = true;
+			} else {
+				path[x][y] = 2;
+				wob = false;
+			}
+		}else{
+			JOptionPane.showMessageDialog(this, "limit place!!~");
+		}
+		repaint();
+		if (isWin()) {
+			JOptionPane.showMessageDialog(this, "you win!!~");
+		}
+
+	}
+	public void mouseClicked(MouseEvent e) {
+	}
+
+	public void mouseEntered(MouseEvent e) {
+	}
+
+	public void mouseExited(MouseEvent e) {		
+	}
+
+	public void mouseReleased(MouseEvent e) {		
+	}
+
+	public boolean isWin(){
+		boolean w=false;
+		int i=1;
+		int count=0;
+		
+		//横
+		while (x + i < 15 && path[x][y] == path[x + i][y]) {
+			i++;
+			count++;
+		}
+		i = 1;
+		while (x - i >= 0 && path[x][y] == path[x - i][y]) {
+			i++;
+			count++;
+			if (count >=4) {
+				return w = true;
+			}
+		}
+		
+		//竖
+		while (y + i < 15 && path[x][y] == path[x][y+i]) {
+			i++;
+			count++;
+		}
+		i = 1;
+		while (y - i >= 0 && path[x][y] == path[x][y-i]) {
+			i++;
+			count++;
+			if (count >= 4) {
+				return w = true;/////todo
+			}
+		}
+	}
+}

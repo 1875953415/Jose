@@ -1,0 +1,16 @@
+package star;
+
+//从 1234四个数字中任选三个数字，组成不同数字
+public class Fournum {
+	public static void main(String[] args) {
+		int n = 0;
+		for (int i = 1; i <= 4;i++)
+			for (int j = 1; j <= 4; j++)
+				for (int k = 1; k <= 4; k++)
+					if (i != j && j != k && i != k&&++n!=0)
+						System.out.println(i*100+j*10+k);
+							
+		System.out.println("共有:" + n + "种");
+	}
+
+}

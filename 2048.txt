@@ -1,0 +1,52 @@
+package com;
+
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+
+public class playbox extends JFrame implements ActionListener{
+	JButton b[]=new JButton[16];
+	public playbox(){
+		setLayout(new GridLayout(4,4));
+		for (int i = 0; i < b.length; i++) {
+			b[i]=new JButton(String.valueOf(i+1));
+			add(b[i]);
+			b[i].addActionListener(this);
+		}
+		b[15].setText("");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setLocation(300,300);
+		setSize(400,400);
+		setVisible(true);
+	}
+	public static void main(String[] args) {
+		new playbox();
+	}
+
+	public void actionPerformed(ActionEvent e) {
+		for (int i = 0; i < 16; i++) {
+			if (i+1<16&&e.getSource()==b[i]&&b[i+1].getText().equals("")) {
+				b[i+1].setText(b[i].getText());
+				b[i].setText("");
+			}
+			else if (i-1>=0&&e.getSource()==b[i]&&b[i-1].getText().equals("")) {
+				b[i-1].setText(b[i].getText());
+				b[i].setText("");
+			}
+			else if (i+4<16&&e.getSource()==b[i]&&b[i+4].getText().equals("")) {
+				b[i+4].setText(b[i].getText());
+				b[i].setText("");
+			}
+			else if (i-4>=0&&e.getSource()==b[i]&&b[i-4].getText().equals("")) {
+				b[i-4].setText(b[i].getText());
+				b[i].setText("");
+			}
+		}
+		
+	}
+}
+
+

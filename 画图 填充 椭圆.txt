@@ -1,0 +1,55 @@
+画图 填充颜色 椭圆
+
+package drawing;
+
+import java.awt.Canvas;
+import java.awt.Color;
+import java.awt.FlowLayout;
+import java.awt.Graphics;
+
+import javax.swing.JFrame;
+
+public class drawing extends JFrame{
+	
+	pad a;
+	
+	public drawing(){
+		pad a=new pad();
+		setLayout(new FlowLayout());
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		add(a);
+		setLocation(300, 100);
+		setSize(500,500);
+		setVisible(true);
+	}
+	
+	public static void main(String[] args) {
+		new drawing();
+	}
+
+}
+
+class pad extends Canvas{
+	
+	public pad(){
+		setBackground(Color.white);
+		setSize(400,400);
+	}
+	
+//重写方法:右键,source,override/implement,paint
+	public void paint(Graphics g) {
+		
+		g.setColor(Color.red);	//颜色是为下个图案设置
+		
+		g.drawOval(100, 100, 80	, 80);
+		
+		g.drawArc(100, 60, 80, 80, 210, 120);
+		
+		g.setColor(Color.cyan);
+		
+		g.drawOval(90, 181, 100, 120);
+		
+		
+	}
+
+}
